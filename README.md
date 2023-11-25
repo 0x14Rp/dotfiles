@@ -5,6 +5,7 @@ My personal dotfiles
 - Nvim
 - Tmux
 - Wezterm
+- Starship
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/20388984/235336571-bfbe8b45-56fb-474a-913e-0a6b2219430d.png">
 
