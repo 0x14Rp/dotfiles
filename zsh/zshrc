@@ -1,0 +1,22 @@
+
+
+autoload -Uz compinit
+compinit
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+#starship
+eval "$(starship init zsh)"
+
+#alias
+
+alias ls='lsd'
+
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias  v='nvim'
+
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
