@@ -1,0 +1,21 @@
+@define-color bar-bg rgba(0, 0, 0, 0);
+
+/* Fondo de los grupos: translucido para que respire sobre el wallpaper */
+@define-color main-bg rgba(17, 17, 27, 0.78);
+@define-color main-fg #cdd6f4;
+
+/* Borde sutil que despega los grupos del fondo */
+@define-color group-border rgba(205, 214, 244, 0.10);
+
+@define-color wb-act-bg #a6adc8;
+@define-color wb-act-fg #11111b;
+
+@define-color wb-hvr-bg #f5c2e7;
+@define-color wb-hvr-fg #313244;
+
+/* Workspace vacio / inactivo */
+@define-color wb-idle-fg rgba(205, 214, 244, 0.45);
+
+@define-color accent #89b4fa;
+@define-color warn #f9e2af;
+@define-color crit #f38ba8;
