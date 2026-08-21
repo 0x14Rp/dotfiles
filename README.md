@@ -87,18 +87,3 @@ mkdir -p ~/dotfiles/foo/.config/foo
 mv ~/.config/foo/config.toml ~/dotfiles/foo/.config/foo/
 stow -t ~ foo
 ```
-
-## Things to keep in mind
-
-- **Never version a file that another program rewrites with `sed -i`.** That
-  destroys the symlink and replaces it with a regular file, and the repo
-  silently stops reflecting reality. This is why `gtk-3.0/settings.ini` and
-  `gtk-4.0/settings.ini` are left out: darkman rewrites them on every theme
-  switch.
-- **`waybar`** hardcodes `"output": [ "DP-2" ]`. On another machine the monitor
-  name has to be changed or the bar will not show up.
-- **`niri`** does not expand `~` or `$HOME` in `spawn-at-startup`, since it runs
-  commands without a shell. Wrap the command in `sh -c` to use variables.
-- **`MangoHud`** carries a `pci_dev` and an `output_folder` tied to this machine.
-- Credentials are never versioned: `gh/hosts.yml`, `~/.ssh`, `~/.gnupg` and
-  `~/.gitconfig` are deliberately excluded.
