@@ -13,6 +13,11 @@ return {
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("mason-lspconfig").setup({
+        -- Los servidores se habilitan mas abajo con vim.lsp.enable().
+        -- Sin esto, mason-lspconfig intenta levantar como servidor todo
+        -- lo instalado en Mason, incluidos formateadores como stylua,
+        -- que crashea porque no acepta el flag --lsp.
+        automatic_enable = false,
         ensure_installed = {
           "jdtls",        -- Java
           "gopls",        -- Go
