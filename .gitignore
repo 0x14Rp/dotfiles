@@ -1,0 +1,5 @@
+*.bak
+*.bak-*
+*~
+*.log
+.claude/settings.local.json
