@@ -1,16 +1,16 @@
 # dotfiles
 
-Configuración personal, gestionada con [GNU Stow](https://www.gnu.org/software/stow/).
+Personal configuration, managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
-El repositorio es la fuente de verdad: cada paquete replica la ruta que el
-archivo debe tener dentro de `$HOME`, y `stow` crea los symlinks.
+The repository is the source of truth: each package mirrors the path the file
+should have inside `$HOME`, and `stow` creates the symlinks.
 
 ```
 zsh/.zshrc                    ->  ~/.zshrc
 kitty/.config/kitty/          ->  ~/.config/kitty/
 ```
 
-## Instalación
+## Install
 
 ```sh
 git clone https://github.com/0x14Rp/dotfiles.git ~/dotfiles
@@ -18,11 +18,11 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-El script detecta el sistema e instala los paquetes que corresponden. Los
-archivos que ya existan se mueven a `~/.dotfiles-backup-<fecha>/`; no se borra
-nada.
+The script detects the operating system and installs the packages that apply to
+it. Any file already in place is moved to `~/.dotfiles-backup-<date>/`; nothing
+is deleted.
 
-Antes hay que tener stow:
+Stow has to be installed first:
 
 ```sh
 brew install stow          # macOS
@@ -30,57 +30,57 @@ sudo pacman -S stow        # Arch
 sudo apt install stow      # Debian / Ubuntu
 ```
 
-### Opciones
+### Options
 
 ```sh
-./install.sh -n              # dry run: muestra que haria, sin tocar nada
-./install.sh nvim kitty      # instala solo esos paquetes
-./install.sh -d              # desinstala (quita los symlinks)
-./install.sh -h              # ayuda
+./install.sh -n              # dry run: show what it would do, change nothing
+./install.sh nvim kitty      # install only those packages
+./install.sh -d              # uninstall (remove the symlinks)
+./install.sh -h              # help
 ```
 
-Conviene correr `./install.sh -n` la primera vez para ver qué se va a apartar.
+Run `./install.sh -n` first to see which files would be moved aside.
 
-## Paquetes
+## Packages
 
-Multiplataforma:
+Cross-platform:
 
-| Paquete | Qué es |
+| Package | What it is |
 |---|---|
-| `zsh` | `.zshrc` y `.zshenv`. Lo específico de Linux vive en un bloque `if [[ "$OSTYPE" == linux* ]]` |
+| `zsh` | `.zshrc` and `.zshenv`. Linux-specific bits live in an `if [[ "$OSTYPE" == linux* ]]` block |
 | `starship` | prompt |
-| `nvim` | Neovim: lazy.nvim, LSP vía Mason, rose-pine |
+| `nvim` | Neovim: lazy.nvim, LSP through Mason, rose-pine |
 | `kitty` | terminal |
 | `wezterm` | terminal |
-| `lsd` | reemplazo de `ls` |
-| `btop` | monitor de sistema |
-| `fastfetch` | info del sistema, con el lanzador `ff` |
+| `lsd` | `ls` replacement |
+| `btop` | system monitor |
+| `fastfetch` | system info, with the `ff` launcher |
 
-Solo Linux (Wayland). `install.sh` los saltea en macOS:
+Linux only (Wayland). `install.sh` skips these on macOS:
 
-| Paquete | Qué es |
+| Package | What it is |
 |---|---|
-| `niri` | compositor (el que uso) |
+| `niri` | compositor (the one I use) |
 | `hypr` | Hyprland, hyprlock, hyprpaper |
-| `waybar` | barra |
-| `wofi` | lanzador |
-| `rofi` | tema de rofi |
-| `mako` | notificaciones |
-| `wlogout` | menú de apagado |
-| `darkman` | cambio automático claro/oscuro según el sol |
-| `MangoHud` | HUD de gaming |
+| `waybar` | status bar |
+| `wofi` | launcher |
+| `rofi` | rofi theme |
+| `mako` | notifications |
+| `wlogout` | power menu |
+| `darkman` | automatic light/dark switching based on sunrise and sunset |
+| `MangoHud` | gaming HUD |
 
-## Uso diario
+## Day-to-day use
 
-Los archivos en `~/.config` son symlinks al repo, así que editar cualquiera de
-los dos lados es lo mismo. Para publicar cambios:
+The files under `~/.config` are symlinks into this repo, so editing either side
+is the same thing. To publish changes:
 
 ```sh
 cd ~/dotfiles
 git add -A && git commit -m "..." && git push
 ```
 
-Para sumar un paquete nuevo, replicar la ruta y stowear:
+To add a new package, mirror the path and stow it:
 
 ```sh
 mkdir -p ~/dotfiles/foo/.config/foo
@@ -88,17 +88,17 @@ mv ~/.config/foo/config.toml ~/dotfiles/foo/.config/foo/
 stow -t ~ foo
 ```
 
-## Detalles a tener en cuenta
+## Things to keep in mind
 
-- **No versionar archivos que otro programa reescriba con `sed -i`.** Eso
-  destruye el symlink y lo reemplaza por un archivo normal, y el repo deja de
-  reflejar la realidad sin avisar. Por eso `gtk-3.0/settings.ini` y
-  `gtk-4.0/settings.ini` quedaron afuera: darkman los reescribe en cada cambio
-  de tema.
-- **`waybar`** fija `"output": [ "DP-2" ]`. En otra máquina hay que cambiar el
-  nombre del monitor o la barra no aparece.
-- **`niri`** no expande `~` ni `$HOME` en `spawn-at-startup`: no usa shell. Para
-  usar variables hay que envolver el comando en `sh -c`.
-- **`MangoHud`** trae `pci_dev` y `output_folder` atados a esta máquina.
-- Nunca se versionan credenciales: `gh/hosts.yml`, `~/.ssh`, `~/.gnupg` ni
-  `~/.gitconfig` están fuera a propósito.
+- **Never version a file that another program rewrites with `sed -i`.** That
+  destroys the symlink and replaces it with a regular file, and the repo
+  silently stops reflecting reality. This is why `gtk-3.0/settings.ini` and
+  `gtk-4.0/settings.ini` are left out: darkman rewrites them on every theme
+  switch.
+- **`waybar`** hardcodes `"output": [ "DP-2" ]`. On another machine the monitor
+  name has to be changed or the bar will not show up.
+- **`niri`** does not expand `~` or `$HOME` in `spawn-at-startup`, since it runs
+  commands without a shell. Wrap the command in `sh -c` to use variables.
+- **`MangoHud`** carries a `pci_dev` and an `output_folder` tied to this machine.
+- Credentials are never versioned: `gh/hosts.yml`, `~/.ssh`, `~/.gnupg` and
+  `~/.gitconfig` are deliberately excluded.
