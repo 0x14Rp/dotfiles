@@ -1,0 +1,11 @@
+# Ubicacion detectada automaticamente via geoclue (GeoIP, ~25 km de
+# precision), suficiente para calcular amanecer y atardecer.
+#
+# Al arrancar, darkman avisa "no valid location in the config" y arranca
+# en modo claro; en cuanto geoclue responde corrige el modo. Si en algun
+# equipo geoclue no funciona, reemplazar por coordenadas fijas:
+#   lat: -33.45
+#   lng: -70.66
+usegeoclue: true
+dbusserver: true
+portal: false
