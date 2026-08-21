@@ -1,0 +1,66 @@
+# mako — a juego con waybar (Catppuccin Mocha)
+# Paleta espejo de ~/.config/waybar/theme.css
+#   main-bg  rgba(17,17,27,0.78) -> #11111BE6 (algo mas opaco, aqui hay que leer)
+#   main-fg  #cdd6f4   accent #89b4fa   warn #f9e2af   crit #f38ba8
+
+font=JetBrainsMono Nerd Font 11
+
+background-color=#11111be6
+text-color=#cdd6f4
+border-color=#cdd6f42e
+progress-color=over #89b4fa33
+
+# Mismo lenguaje visual que las pildoras de la barra
+border-size=1
+border-radius=14
+padding=14
+margin=8
+outer-margin=12
+
+# Bajo la barra (38px de alto), pegado a la derecha como el grupo de estado
+anchor=top-right
+layer=overlay
+
+width=400
+height=180
+max-visible=5
+
+icons=1
+max-icon-size=48
+icon-border-radius=10
+
+markup=1
+actions=1
+format=<b>%s</b>\n%b
+default-timeout=10000
+ignore-timeout=1
+
+group-by=app-name
+history=1
+
+# ---------------------------------------------------------------- urgencias
+
+[urgency=low]
+text-color=#a6adc8
+border-color=#cdd6f41a
+default-timeout=10000
+
+[urgency=normal]
+border-color=#89b4fa66
+
+[urgency=critical]
+border-color=#f38ba8
+text-color=#f38ba8
+default-timeout=0
+
+# ------------------------------------------------------------------ por app
+
+[app-name=Claude\ Code]
+border-color=#fab387aa
+
+[category=screenshot]
+default-timeout=3000
+
+# Notificaciones agrupadas
+[grouped]
+format=<b>%s</b>\n%b

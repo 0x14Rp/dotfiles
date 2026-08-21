@@ -1,0 +1,28 @@
+show=drun
+prompt=Buscar
+mode=drun
+
+# Ventana compacta y centrada (antes: ancho completo por defecto)
+width=40%
+height=45%
+location=center
+orientation=vertical
+halign=fill
+content_halign=fill
+
+lines=9
+columns=1
+dynamic_lines=false
+
+# Iconos de las apps
+allow_images=true
+image_size=28
+
+insensitive=true
+matching=fuzzy
+no_actions=true
+hide_scroll=true
+allow_markup=true
+gtk_dark=true
+
+term=kitty
