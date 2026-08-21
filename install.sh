@@ -75,8 +75,11 @@ echo
 if $DESINSTALAR; then
     for p in "${VALIDOS[@]}"; do
         echo "quitando $p"
-        $DRY_RUN && stow -n -v -D -t "$HOME" -d "$DOTFILES" "$p" \
-                 || stow -D -t "$HOME" -d "$DOTFILES" "$p"
+        if $DRY_RUN; then
+            stow -n -v -D -t "$HOME" -d "$DOTFILES" "$p" || true
+        else
+            stow -D -t "$HOME" -d "$DOTFILES" "$p"
+        fi
     done
     echo
     echo "Listo. Los symlinks fueron removidos."
@@ -116,7 +119,10 @@ for p in "${VALIDOS[@]}"; do
     echo "instalando $p"
     apartar_conflictos "$p"
     if $DRY_RUN; then
-        stow -n -v -t "$HOME" -d "$DOTFILES" "$p"
+        # En simulacion los conflictos son esperados (los archivos no se
+        # apartaron de verdad), y stow sale con error. No cortamos: el
+        # objetivo del dry run es ver TODOS los paquetes.
+        stow -n -v -t "$HOME" -d "$DOTFILES" "$p" || true
     else
         stow -t "$HOME" -d "$DOTFILES" "$p"
     fi
@@ -125,6 +131,10 @@ done
 echo
 if $DRY_RUN; then
     echo "Dry run: no se modifico nada."
+    echo
+    echo "Si arriba aparecio 'WARNING! ... would cause conflicts', es esperado:"
+    echo "en la simulacion los archivos no se apartaron de verdad, asi que stow"
+    echo "todavia los ve. En la corrida real se apartan antes y no pasa."
 else
     [ -d "$BACKUP" ] && echo "Los archivos que habia se guardaron en: $BACKUP"
     echo "Listo. Abri una terminal nueva para ver los cambios."
