@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+"""Lanzador de fastfetch con composicion adaptativa.
+
+Si la ventana es lo bastante alta -> logo grande arriba, todo centrado.
+Si no                             -> disposicion lateral clasica.
+"""
+import fcntl, os, struct, subprocess, sys, termios
+
+TEXT_ROWS, TEXT_COLS = 18, 73     # medido con: fastfetch --logo none --pipe
+MIN_LOGO_ROWS        = 14         # por debajo de esto no compensa apilar
+CFG = os.path.expanduser("~/.config/fastfetch/config.jsonc")
+
+def winsize():
+    for fd in (sys.stdout, sys.stderr, sys.stdin):
+        try:
+            r, c, xp, yp = struct.unpack('HHHH', fcntl.ioctl(fd, termios.TIOCGWINSZ, b'\0'*8))
+            if r and c:
+                return r, c, xp, yp
+        except Exception:
+            pass
+    return 24, 80, 0, 0
+
+rows, cols, xpix, ypix = winsize()
+# override para pruebas:  FF_SIZE="filas cols xpix ypix" ff
+if os.environ.get("FF_SIZE"):
+    rows, cols, xpix, ypix = (int(v) for v in os.environ["FF_SIZE"].split())
+free = rows - TEXT_ROWS - 2                     # -2: linea de comando + prompt nuevo
+args = ["fastfetch", "-c", CFG]
+
+if free >= MIN_LOGO_ROWS and xpix and ypix:
+    cell_w, cell_h = xpix / cols, ypix / rows
+    logo_rows = min(free, 34)
+    logo_cols = round(logo_rows * cell_h / cell_w)
+    args += [
+        "--logo-position", "top",
+        "--logo-height",       str(logo_rows),
+        "--logo-padding-left", str(max(0, (cols - logo_cols)  // 2)),
+        "--logo-padding-right","0",
+        "--key-padding-left",  str(max(0, (cols - TEXT_COLS) // 2)),
+    ]
+# si no, se usa tal cual la config (logo a la izquierda)
+
+args += sys.argv[1:]          # los argumentos del usuario mandan (van al final)
+os.execvp("fastfetch", args)
