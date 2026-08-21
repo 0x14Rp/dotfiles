@@ -25,12 +25,20 @@ return {
         },
       })
 
-      -- Configuración básica para cada servidor
-      local lspconfig = require("lspconfig")
-      local servers = { "jdtls", "gopls", "rust_analyzer", "ts_ls", "yamlls", "jsonls", "clangd","lua_ls" }
-      for _, server in ipairs(servers) do
-        lspconfig[server].setup({})
-      end
+      -- Habilita cada servidor con la API nativa de Neovim 0.11+.
+      -- nvim-lspconfig ya no expone require("lspconfig")[server].setup();
+      -- ahora publica las definiciones en su carpeta lsp/ y se activan
+      -- con vim.lsp.enable().
+      vim.lsp.enable({
+        "jdtls",         -- Java
+        "gopls",         -- Go
+        "rust_analyzer", -- Rust
+        "ts_ls",         -- JavaScript y TypeScript
+        "yamlls",        -- YAML
+        "jsonls",        -- JSON
+        "clangd",        -- C y C++
+        "lua_ls",        -- Lua
+      })
     end,
   },
 
