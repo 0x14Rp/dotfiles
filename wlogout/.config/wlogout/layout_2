@@ -1,13 +1,13 @@
 {
     "label": "lock",
-    "action": "lockscreen.sh",
+    "action": "$HOME/.config/waybar/scripts/lib/sessionctl.sh lock",
     "text": "Lock",
     "keybind": "l"
 }
 
 {
     "label": "logout",
-    "action": "hyprctl dispatch exit 0",
+    "action": "$HOME/.config/waybar/scripts/lib/sessionctl.sh logout",
     "text": "Logout",
     "keybind": "e"
 }
