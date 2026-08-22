@@ -41,35 +41,6 @@ sudo apt install stow      # Debian / Ubuntu
 
 Run `./install.sh -n` first to see which files would be moved aside.
 
-## Packages
-
-Cross-platform:
-
-| Package | What it is |
-|---|---|
-| `zsh` | `.zshrc` and `.zshenv`. Linux-specific bits live in an `if [[ "$OSTYPE" == linux* ]]` block |
-| `starship` | prompt |
-| `nvim` | Neovim: lazy.nvim, LSP through Mason, rose-pine |
-| `kitty` | terminal |
-| `wezterm` | terminal |
-| `lsd` | `ls` replacement |
-| `btop` | system monitor |
-| `fastfetch` | system info, with the `ff` launcher |
-
-Linux only (Wayland). `install.sh` skips these on macOS:
-
-| Package | What it is |
-|---|---|
-| `niri` | compositor (the one I use) |
-| `hypr` | Hyprland, hyprlock, hyprpaper |
-| `waybar` | status bar |
-| `wofi` | launcher |
-| `rofi` | rofi theme |
-| `mako` | notifications |
-| `wlogout` | power menu |
-| `darkman` | automatic light/dark switching based on sunrise and sunset |
-| `MangoHud` | gaming HUD |
-
 ## Day-to-day use
 
 The files under `~/.config` are symlinks into this repo, so editing either side
