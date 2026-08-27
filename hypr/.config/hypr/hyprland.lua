@@ -182,8 +182,8 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 5,  bezier = "wind"
 
 hl.config({
     dwindle = {
-        force_split = 2,               -- la nueva ventana siempre abajo/derecha
-        split_width_multiplier = 3.0,  -- en ultrawide, partir arriba/abajo en vez de al lado
+        force_split = 2,               -- new window always bottom/right
+        split_width_multiplier = 3.0,  -- on ultrawide, split top/bottom instead of side by side
         preserve_split = true,
     },
 })
@@ -242,5 +242,5 @@ hl.bind(mainMod .. " + TAB", hl.plugin.scrolloverview.overview("toggle"))
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true }) -- Drag floating window with SUPER + Left Click
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true }) -- Resize floating window with SUPER + Right Click
 
--- Alternar direccion del split (vertical <-> horizontal)
+-- Toggle split direction (vertical <-> horizontal)
 hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
