@@ -40,21 +40,3 @@ sudo apt install stow      # Debian / Ubuntu
 ```
 
 Run `./install.sh -n` first to see which files would be moved aside.
-
-## Day-to-day use
-
-The files under `~/.config` are symlinks into this repo, so editing either side
-is the same thing. To publish changes:
-
-```sh
-cd ~/dotfiles
-git add -A && git commit -m "..." && git push
-```
-
-To add a new package, mirror the path and stow it:
-
-```sh
-mkdir -p ~/dotfiles/foo/.config/foo
-mv ~/.config/foo/config.toml ~/dotfiles/foo/.config/foo/
-stow -t ~ foo
-```
