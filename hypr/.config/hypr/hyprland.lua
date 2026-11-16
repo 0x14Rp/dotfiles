@@ -22,6 +22,8 @@ hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("__GL_GSYNC_ALLOWED", "0")
 hl.env("__GL_VR_ALLOWED", "0")
+-- Render on the RTX 4080 only; symlink created by /etc/udev/rules.d/99-nvidia-card.rules
+hl.env("AQ_DRM_DEVICES", "/dev/dri/nvidia-card")
 
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
 hl.env("HYPRCURSOR_SIZE", "28")
@@ -136,7 +138,6 @@ hl.window_rule({
     name  = "move-kitty",
     match = { class = "kitty" },
 
-    move      = "100 100",
     animation = "popin",
 })
 
@@ -146,6 +147,14 @@ hl.window_rule({
 
     float  = true,
     center = true,
+})
+
+-- Ignorar peticiones de maximizar de las apps (evita que kitty ocupe toda la pantalla)
+hl.window_rule({
+    name  = "suppress-maximize",
+    match = { class = ".*" },
+
+    suppress_event = "maximize",
 })
 
 -- MASTER RULE (Optional):
@@ -182,9 +191,7 @@ hl.animation({ leaf = "workspaces",  enabled = true, speed = 5,  bezier = "wind"
 
 hl.config({
     dwindle = {
-        force_split = 2,               -- new window always bottom/right
-        split_width_multiplier = 3.0,  -- on ultrawide, split top/bottom instead of side by side
-        preserve_split = true,
+        preserve_split = true, -- necesario para que SUPER+S (togglesplit) se mantenga
     },
 })
 
@@ -235,6 +242,7 @@ end
 -- Apps and Utilities
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("brave"))
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("~/.local/bin/record-region"))
 
 -- Window Management
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
@@ -243,4 +251,4 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true }) -- 
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true }) -- Resize floating window with SUPER + Right Click
 
 -- Toggle split direction (vertical <-> horizontal)
-hl.bind(mainMod .. " + S", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + s", hl.dsp.layout("togglesplit"))
