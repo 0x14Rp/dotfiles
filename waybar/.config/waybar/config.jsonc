@@ -20,7 +20,7 @@
     
     // positions generated based on config.ctl //
     
-        "modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/cpuinfo","custom/gpuinfo#nvidia","custom/r_end","custom/l_end","niri/workspaces","custom/r_end","custom/l_end","niri/window","custom/r_end","custom/padd"],
+        "modules-left": ["custom/padd","custom/l_end","cpu","memory","custom/cpuinfo","custom/gpuinfo#nvidia","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","hyprland/window","custom/r_end","custom/padd"],
         "modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
         "modules-right": ["custom/padd","custom/l_end","network","pulseaudio","pulseaudio#microphone","custom/updates","custom/keybindhint","custom/r_end","custom/l_end","privacy","tray","custom/r_end","custom/l_end","custom/cliphist","custom/power","custom/r_end","custom/padd"],
     
@@ -139,13 +139,13 @@
             }
         },
     
-        "niri/workspaces": {
+        "hyprland/workspaces": {
             "rotate": 0,
             "all-outputs": false,
-            "format": "{value}"
+            "format": "{id}"
         },
     
-        "niri/window": {
+        "hyprland/window": {
             "format": "  {}",
             "rotate": 0,
             "separate-outputs": true,
@@ -236,9 +236,9 @@
 
     "custom/keybindhint": {
         "format": "",
-        "tooltip-format": " Atajos de teclado (niri)",
+        "tooltip-format": " Atajos de teclado",
         "rotate": 0,
-        "on-click": "niri msg action show-hotkey-overlay"
+        "on-click": "$HOME/.config/waybar/scripts/lib/keybinds_hint.sh"
     },
 
     "privacy": {
