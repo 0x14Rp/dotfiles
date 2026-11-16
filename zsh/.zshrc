@@ -50,3 +50,6 @@ alias unreal="$HOME/Downloads/UnrealEngine-5.8.0-release/Engine/Binaries/Linux/U
 
 # kimi-code
 export PATH="$HOME/.kimi-code/bin:$PATH"
+
+export EDITOR=nvim
+export VISUAL=nvim
