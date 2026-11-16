@@ -6,7 +6,6 @@ local username = os.getenv("USER") or os.getenv("USERNAME") or "unknown"
 
 -- Your existing configuration
 config.color_scheme = "rose-pine"
-config.colors = {}
 config.default_cursor_style = 'BlinkingUnderline'
 config.font = wezterm.font_with_fallback({
   { family = "CaskaydiaCove Nerd Font" },
@@ -16,7 +15,10 @@ config.font_size = 12.0
 config.initial_cols = 120
 config.initial_rows = 30
 --config.window_background_opacity = 0.12
-config.window_decorations = "RESIZE"
+config.enable_wayland = false
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.integrated_title_button_style = "Gnome"
+config.integrated_title_button_alignment = "Right"
 config.window_close_confirmation = "AlwaysPrompt"
 config.scrollback_lines = 3000
 config.default_workspace = "home"
@@ -25,9 +27,26 @@ config.inactive_pane_hsb = {
   brightness = 0.5,
 }
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 3000 }
-config.use_fancy_tab_bar = false
+config.use_fancy_tab_bar = true
+config.hide_tab_bar_if_only_one_tab = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = false
+config.window_frame = {
+  font = wezterm.font({ family = "CaskaydiaCove Nerd Font", weight = "Bold" }),
+  font_size = 11.0,
+  active_titlebar_bg = "#191724",
+  inactive_titlebar_bg = "#191724",
+}
+config.colors = {
+  tab_bar = {
+    background = "#191724",
+    active_tab = { bg_color = "#26233a", fg_color = "#e0def4" },
+    inactive_tab = { bg_color = "#191724", fg_color = "#6e6a86" },
+    inactive_tab_hover = { bg_color = "#1f1d2e", fg_color = "#e0def4" },
+    new_tab = { bg_color = "#191724", fg_color = "#6e6a86" },
+    new_tab_hover = { bg_color = "#1f1d2e", fg_color = "#e0def4" },
+  },
+}
 
 -- Add keybindings for split-screen functionality
 config.keys = {
