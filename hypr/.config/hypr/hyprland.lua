@@ -80,7 +80,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = { colors = { "rgba(ca9ee6ff)", "rgba(f2d5cfff)" }, angle = 45 },
+            active_border   = { colors = { "rgba(cba6f7ff)", "rgba(f5c2e7ff)", "rgba(f9e2afff)", "rgba(94e2d5ff)", "rgba(89b4faff)" }, angle = 45 },
             inactive_border = { colors = { "rgba(b4befecc)", "rgba(6c7086cc)" }, angle = 45 },
         },
 
@@ -90,7 +90,7 @@ hl.config({
 
     group = {
         col = {
-            border_active          = { colors = { "rgba(ca9ee6ff)", "rgba(f2d5cfff)" }, angle = 45 },
+            border_active          = { colors = { "rgba(cba6f7ff)", "rgba(f5c2e7ff)", "rgba(f9e2afff)", "rgba(94e2d5ff)", "rgba(89b4faff)" }, angle = 45 },
             border_inactive        = { colors = { "rgba(b4befecc)", "rgba(6c7086cc)" }, angle = 45 },
             border_locked_active   = { colors = { "rgba(ca9ee6ff)", "rgba(f2d5cfff)" }, angle = 45 },
             border_locked_inactive = { colors = { "rgba(b4befecc)", "rgba(6c7086cc)" }, angle = 45 },
@@ -181,7 +181,7 @@ hl.animation({ leaf = "windowsIn",   enabled = true, speed = 6,  bezier = "winIn
 hl.animation({ leaf = "windowsOut",  enabled = true, speed = 5,  bezier = "winOut", style = "slide" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 5,  bezier = "wind",   style = "slide" })
 hl.animation({ leaf = "border",      enabled = true, speed = 1,  bezier = "liner" })
-hl.animation({ leaf = "borderangle", enabled = true, speed = 30, bezier = "liner",  style = "once" })
+hl.animation({ leaf = "borderangle", enabled = true, speed = 60, bezier = "liner",  style = "loop" })
 hl.animation({ leaf = "fade",        enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "workspaces",  enabled = true, speed = 5,  bezier = "wind" })
 
@@ -241,7 +241,7 @@ end
 
 -- Apps and Utilities
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("brave"))
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region -o /home/lucky/Pictures/Screenshots"))
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("~/.local/bin/record-region"))
 
 -- Window Management
