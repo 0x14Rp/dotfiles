@@ -231,3 +231,142 @@ tooltip label {
     margin-left: 9px;
     padding-left: 3px;
 }
+
+/* ------------------------------------------------------------------ */
+/*  Aurora: acentos pastel (inspirado en flickowoa/dotfiles, rama aurora) */
+/* ------------------------------------------------------------------ */
+
+@keyframes aurora_shift {
+    0%   { background-position: 0% 200%; }
+    50%  { background-position: 200% 0%; }
+    100% { background-position: 400% 200%; }
+}
+
+/* Workspace activo: gradiente pastel animado */
+#workspaces button.active {
+    color: #11111b;
+    background: radial-gradient(circle, #cba6f7 0%, #c1a8f7 12%, #f9e2af 19%, #bda9f7 20%, #b6abf7 24%, #c6ffc2 36%, #b1acf7 37%, #aaadf8 48%, #ffffff 52%, #a6aef8 52%, #a0aff8 59%, #94e2d5 66%, #9bb0f8 67%, #cdd6f4 77%, #94b2f9 78%, #90b3fa 82%, #b4befe 83%, #8db3fa 90%, #89b4fa 100%);
+    background-size: 400% 400%;
+    animation: aurora_shift 20s ease-in-out infinite;
+}
+
+#workspaces button:hover {
+    background: #f5c2e7;
+    color: #313244;
+}
+
+/* Texto de colores pastel (sin fondos, para no romper las pildoras) */
+#clock {
+    color: #f5c2e7;
+    font-size: 14px;
+}
+
+#custom-power {
+    color: #fab387;
+}
+
+#idle_inhibitor {
+    color: #94e2d5;
+}
+
+#network, #pulseaudio {
+    color: #b4befe;
+}
+
+/* ================================================================== */
+/*  AURORA v2: pildoras sueltas, extremos ocultos, algunas de color    */
+/* ================================================================== */
+
+/* Fuera los extremos y el relleno de grupo: cada modulo es su pildora */
+#custom-l_end, #custom-r_end, #custom-sl_end, #custom-sr_end,
+#custom-rl_end, #custom-rr_end, #custom-padd {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    min-height: 0;
+}
+
+/* Pildora oscura base (catppuccin crust) */
+#backlight, #battery, #bluetooth, #custom-cava, #custom-cliphist, #clock,
+#custom-cpuinfo, #cpu, #custom-gpuinfo, #custom-hyprsunset, #idle_inhibitor,
+#custom-keybindhint, #language, #memory, #mpris, #network,
+#custom-notifications, #custom-power, #privacy, #pulseaudio,
+#custom-sensorsinfo, #custom-spotify, #taskbar, #custom-theme, #tray,
+#custom-updates, #custom-wallchange, #custom-wbar, #custom-weather, #window {
+    background: #11111b;
+    color: #b4befe;
+    border: none;
+    border-radius: 15px;
+    margin: 6px 4px;
+    padding: 0px 12px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Workspaces: sin contenedor, cada boton es un circulo oscuro */
+#workspaces {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 6px 4px;
+    padding: 0;
+}
+
+#workspaces button {
+    background: #11111b;
+    color: #89b4fa;
+    border-radius: 15px;
+    margin: 0px 4px;
+    padding: 0px 10px;
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.12);
+}
+
+#workspaces button.active {
+    padding: 0px 18px;
+    color: #11111b;
+}
+
+/* Titulo de ventana: pildora turquesa -> azul */
+#window {
+    color: #11111b;
+    font-weight: bold;
+    background: linear-gradient(52deg, #94e2d5 0%, #89dceb 25%, #74c7ec 50%, #89b4fa 75%, #b4befe 100%);
+    background-size: 300% 300%;
+    animation: aurora_shift 15s ease infinite;
+}
+
+/* Reloj: pildora rosa -> lila */
+#clock {
+    color: #11111b;
+    font-size: 14px;
+    background: linear-gradient(52deg, #f5c2e7 0%, #cba6f7 50%, #b4befe 100%);
+    background-size: 300% 300%;
+    animation: aurora_shift 15s ease infinite;
+}
+
+/* Idle inhibitor: pildora crema/amarillo pastel */
+#idle_inhibitor {
+    color: #11111b;
+    background: linear-gradient(52deg, #f9e2af 0%, #f5e0dc 60%, #fab387 100%);
+    padding: 0px 14px;
+}
+
+/* Power: pildora rosa/naranja */
+#custom-power {
+    color: #11111b;
+    background: linear-gradient(52deg, #fab387 0%, #f38ba8 60%, #f5c2e7 100%);
+}
+
+/* Teclado/atajos: pildora lavanda */
+#custom-keybindhint {
+    color: #11111b;
+    background: linear-gradient(52deg, #b4befe 0%, #cba6f7 100%);
+}
+
+/* Red/audio: oscuras con iconos pastel */
+#network { color: #89dceb; }
+#pulseaudio { color: #b4befe; }
+#pulseaudio.microphone { color: #f5c2e7; }
+#cpu, #memory { color: #94e2d5; }
+#custom-cpuinfo, #custom-gpuinfo { color: #f9e2af; }
